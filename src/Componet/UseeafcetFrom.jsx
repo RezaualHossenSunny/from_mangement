@@ -1,19 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const UseeafcetFrom = () => {
+    let [from,setFrom]=useState({fname:"", lname:"",city:"",gender:""});
+
+    const change=(proparty,value)=>{
+
+        setFrom(prevobj=>({
+
+            ...prevobj,
+            [proparty]:value
+
+        }))
+
+    }
   return (
     <div>
         <from>
-            <input placeholder='enter first name'/> <br/>
-            <input placeholder='enter last name'/> <br/>
-<select>
+            <input onChange={(e)=>{change("fname",e.target.value)}} value={from.fname} placeholder='enter first name'/> <br/>
+            <input onChange={(e)=>{change("lname",e.target.value)}} value={from.lname} placeholder='enter last name'/> <br/>
+<select onChange={(e)=>{change("city",e.target.value)}} value={from.city}>
     <option value="">chose your city</option>
     <option value="Dhaka">Dhaka</option>
     <option value="chitagong">chitagong</option>
 </select>
 <br/>
-<input type='radio'/> male             
-<input type='radio'/> Female 
+<input onChange={()=>{change("gender", "male")}} checked={from.gender==="male"} type='radio' name='gender'/> male             
+<input onChange={()=>{change("gender", "Female")}} checked={from.gender ==="Female"} type='radio' name='gender'/> Female 
 <br/>
 <button type='submit'> submit </button>           
         </from>
